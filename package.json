@@ -10,17 +10,20 @@
     "@webpack-cli/generators": "^3.0.7",
     "browserify": "^17.0.0",
     "browserify-css": "^0.15.0",
-    "budo": "^11.8.4",
     "randomcolor": "^0.6.2",
     "semistandard": "^17.0.0",
     "shelljs": "^0.8.5",
     "shx": "^0.3.4",
     "snazzy": "^9.0.0",
     "webpack": "^5.93.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  },
+  "engines": {
+    "node": ">= v18.12.0"
   },
   "scripts": {
-    "dev": "budo index.js:../../dist/aframe-particle-system-component.min.js --port 8000 --live --open",
+    "dev": "npx webpack serve",
     "dist": "webpack && NODE_ENV=production webpack",
     "lint": "semistandard -v | snazzy",
     "prepublish": "npm run dist",

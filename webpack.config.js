@@ -28,6 +28,13 @@ const config = {
         ],
     },
     devtool: 'cheap-module-source-map',
+    devServer: {
+        static: { directory: path.join(__dirname), },
+        compress: true,
+        port: 8000,
+        devMiddleware: { publicPath: '/dist' },
+        watchFiles: ['index.html', 'lib/SPE.js', 'examples/**/index.html'],
+    },
 };
 
 module.exports = () => {

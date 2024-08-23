@@ -522,7 +522,6 @@ SPE.ShaderAttribute.typeSizeMap = {
  */
 SPE.ShaderAttribute.prototype.setUpdateRange = function( min, max ) {
 	'use strict';
-
 	this.updateMin = Math.min( min * this.componentSize, this.updateMin * this.componentSize );
 	this.updateMax = Math.max( max * this.componentSize, this.updateMax * this.componentSize );
 };
@@ -534,11 +533,11 @@ SPE.ShaderAttribute.prototype.setUpdateRange = function( min, max ) {
 SPE.ShaderAttribute.prototype.flagUpdate = function() {
 	'use strict';
 
-	var attr = this.bufferAttribute,
-		range = attr.addUpdateRange;
+	var attr = this.bufferAttribute;
 
-	range.offset = this.updateMin;
-	range.count = Math.min( ( this.updateMax - this.updateMin ) + this.componentSize, this.typedArray.array.length );
+  const count = Math.min( ( this.updateMax - this.updateMin ) + this.componentSize, this.typedArray.array.length );
+  attr.clearUpdateRanges();
+  attr.addUpdateRange(this.updateMin, count);
 	// console.log( range.offset, range.count, this.typedArray.array.length );
 	// console.log( 'flagUpdate:', range.offset, range.count );
 	attr.needsUpdate = true;
@@ -551,7 +550,6 @@ SPE.ShaderAttribute.prototype.flagUpdate = function() {
  */
 SPE.ShaderAttribute.prototype.resetUpdateRange = function() {
 	'use strict';
-
 	this.updateMin = 0;
 	this.updateMax = 0;
 };
@@ -582,8 +580,7 @@ SPE.ShaderAttribute.prototype.forceUpdateAll = function() {
 	'use strict';
 
 	this.bufferAttribute.array = this.typedArray.array;
-	this.bufferAttribute.addUpdateRange.offset = 0;
-	this.bufferAttribute.addUpdateRange.count = -1;
+  this.bufferAttribute.clearUpdateRanges();
 	// this.bufferAttribute.dynamic = false;
 	// this.bufferAttribute.usage = this.dynamicBuffer ?
 	// 	THREE.DynamicDrawUsage :
@@ -3548,8 +3545,7 @@ SPE.Emitter.prototype.reset = function( force ) {
             array[ index + 1 ] = 0.0;
         }
 
-        attr.addUpdateRange.offset = 0;
-        attr.addUpdateRange.count = -1;
+        attr.clearUpdateRanges();
         attr.needsUpdate = true;
     }
 
