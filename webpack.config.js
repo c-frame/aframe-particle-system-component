@@ -8,6 +8,10 @@ const isProduction = process.env.NODE_ENV == 'production';
 const config = {
     context: __dirname,
     entry: './index.js',
+    externals: {
+        // Stubs out `import ... from 'three'` so it returns `import ... from window.THREE` effectively using THREE global variable that is defined by AFRAME.
+        three: 'THREE'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: isProduction ? "aframe-particle-system-component.min.js" : "aframe-particle-system-component.js"
@@ -31,7 +35,7 @@ const config = {
     devServer: {
         static: { directory: path.join(__dirname), },
         compress: true,
-        port: 8000,
+        port:  process.env.PORT || 8000,
         devMiddleware: { publicPath: '/dist' },
         watchFiles: ['index.html', 'lib/SPE.js', 'examples/**/index.html'],
     },

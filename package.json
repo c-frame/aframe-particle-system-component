@@ -1,13 +1,12 @@
 {
   "name": "@c-frame/aframe-particle-system-component",
-  "version": "1.1.5",
+  "version": "1.1.4",
   "description": "Particle systems for A-Frame.",
   "browser": "index.js",
   "directories": {
     "example": "examples"
   },
   "devDependencies": {
-    "@webpack-cli/generators": "^3.0.7",
     "browserify": "^17.0.0",
     "browserify-css": "^0.15.0",
     "randomcolor": "^0.6.2",
@@ -23,7 +22,7 @@
     "node": ">= v18.12.0"
   },
   "scripts": {
-    "dev": "npx webpack serve",
+    "dev": "webpack serve",
     "dist": "webpack && NODE_ENV=production webpack",
     "lint": "semistandard -v | snazzy",
     "prepublish": "npm run dist",

@@ -120,7 +120,7 @@ npm install aframe-particle-system-component
 
 ```
 npm install
-npm run dev
+npm run dev   # Changes are only in the served version, not dist/aframe-particle-system-component.js
 ```
 
 To rebuild:
