@@ -535,9 +535,9 @@ SPE.ShaderAttribute.prototype.flagUpdate = function() {
 
 	var attr = this.bufferAttribute;
 
-  const count = Math.min( ( this.updateMax - this.updateMin ) + this.componentSize, this.typedArray.array.length );
-  attr.clearUpdateRanges();
-  attr.addUpdateRange(this.updateMin, count);
+	var count = Math.min( ( this.updateMax - this.updateMin ) + this.componentSize, this.typedArray.array.length );
+	attr.clearUpdateRanges();
+	attr.addUpdateRange(this.updateMin, count);
 	// console.log( range.offset, range.count, this.typedArray.array.length );
 	// console.log( 'flagUpdate:', range.offset, range.count );
 	attr.needsUpdate = true;
@@ -580,7 +580,7 @@ SPE.ShaderAttribute.prototype.forceUpdateAll = function() {
 	'use strict';
 
 	this.bufferAttribute.array = this.typedArray.array;
-  this.bufferAttribute.clearUpdateRanges();
+	this.bufferAttribute.clearUpdateRanges();
 	// this.bufferAttribute.dynamic = false;
 	// this.bufferAttribute.usage = this.dynamicBuffer ?
 	// 	THREE.DynamicDrawUsage :
@@ -1315,7 +1315,7 @@ SPE.utils = {
         'use strict';
 
         var sourceLength = srcArray.length,
-            newArray = [ structuredClone(srcArray[0]) ],
+            newArray = [ typeof srcArray[ 0 ]?.clone === 'function' ? srcArray[ 0 ].clone() : srcArray[ 0 ] ],
             factor = ( sourceLength - 1 ) / ( newLength - 1 );
 
 
@@ -1329,7 +1329,9 @@ SPE.utils = {
         }
 
         newArray.push(
-          structuredClone(srcArray[ sourceLength - 1 ])
+            typeof srcArray[ sourceLength - 1 ]?.clone === 'function' ?
+            srcArray[ sourceLength - 1 ].clone() :
+            srcArray[ sourceLength - 1 ]
         );
 
         return newArray;
