@@ -1,6 +1,6 @@
 {
   "name": "@c-frame/aframe-particle-system-component",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Particle systems for A-Frame.",
   "main": "./index.js",
   "directories": {
