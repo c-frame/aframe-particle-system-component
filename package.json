@@ -7,10 +7,7 @@
     "example": "examples"
   },
   "devDependencies": {
-    "randomcolor": "^0.6.2",
     "semistandard": "^17.0.0",
-    "shelljs": "^0.8.5",
-    "shx": "^0.3.4",
     "snazzy": "^9.0.0",
     "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4",
@@ -24,8 +21,6 @@
     "dist": "webpack && NODE_ENV=production webpack",
     "lint": "semistandard -v | snazzy",
     "prepublish": "npm run dist",
-    "preghpages": "npm run build && shx rm -rf gh-pages && shx mkdir gh-pages && shx cp -r examples/* gh-pages",
-    "ghpages": "npm run preghpages && ghpages -p gh-pages",
     "start": "npm run dev"
   },
   "repository": {
