@@ -2,24 +2,26 @@
   "name": "@c-frame/aframe-particle-system-component",
   "version": "1.1.4",
   "description": "Particle systems for A-Frame.",
-  "main": "index.js",
+  "main": "./index.js",
   "directories": {
     "example": "examples"
   },
   "devDependencies": {
-    "browserify": "^13.0.0",
-    "browserify-css": "^0.9.1",
-    "budo": "^8.2.2",
-    "randomcolor": "^0.4.4",
-    "semistandard": "^8.0.0",
-    "shelljs": "^0.7.0",
-    "shx": "^0.1.1",
-    "snazzy": "^4.0.0",
-    "webpack": "^1.13.0"
+    "randomcolor": "^0.6.2",
+    "semistandard": "^17.0.0",
+    "shelljs": "^0.8.5",
+    "shx": "^0.3.4",
+    "snazzy": "^9.0.0",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  },
+  "engines": {
+    "node": ">= v18.12.0"
   },
   "scripts": {
-    "dev": "budo index.js:../../dist/aframe-particle-system-component.min.js --port 8000 --live --open",
-    "dist": "webpack index.js dist/aframe-particle-system-component.js && webpack -p index.js dist/aframe-particle-system-component.min.js",
+    "dev": "webpack serve",
+    "dist": "webpack && NODE_ENV=production webpack",
     "lint": "semistandard -v | snazzy",
     "prepublish": "npm run dist",
     "preghpages": "npm run build && shx rm -rf gh-pages && shx mkdir gh-pages && shx cp -r examples/* gh-pages",
